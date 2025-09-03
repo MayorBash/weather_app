@@ -3,6 +3,7 @@ import requests
 import matplotlib.pyplot as plt
 import io
 from collections import defaultdict
+import os
 
 app = Flask(__name__)
 
@@ -226,5 +227,9 @@ def forecast_chart():
     except Exception as e:
         return f"Weather API error: {str(e)}", 500
 
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
+
